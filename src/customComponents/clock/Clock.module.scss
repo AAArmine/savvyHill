@@ -1,0 +1,12 @@
+@import "../../assets/style/root.scss";
+.clockContainer {
+  h2 {
+    color: var(--alternative);
+    margin-bottom: 0;
+  }
+  span {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--secondary);
+  }
+}

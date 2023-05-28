@@ -1,0 +1,38 @@
+@import "../../assets/style/root.scss";
+.layoutContainer {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--main);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 70px;
+    rotate: (180deg);
+    position: relative;
+    top: -190px;
+    cursor: pointer;
+  }
+  .userDataCont {
+    max-width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+    h1 {
+      color: var(--secondary);
+      font-size: 40px;
+      font-weight: 700;
+    }
+    span {
+      color: var(--alternative);
+      font-weight: 900;
+      font-size: 28px;
+    }
+    p {
+      font-style: italic;
+      font-size: 25px;
+    }
+  }
+}

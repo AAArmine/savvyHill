@@ -1,0 +1,87 @@
+@import "./breakpoints/breakpoints.scss";
+
+@font-face {
+  font-family: workSans;
+  src: url("./fonts/workSans/WorkSans-Regular.ttf");
+}
+@font-face {
+  font-family: workSans-bold;
+  src: url("./fonts/workSans/WorkSans-Bold.ttf");
+}
+@font-face {
+  font-family: workSans-light;
+  src: url("./fonts/workSans/WorkSans-Light.ttf");
+}
+@font-face {
+  font-family: workSans-italic;
+  src: url("./fonts/workSans/WorkSans-Italic.ttf");
+}
+@mixin vhAlignCenter {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+@mixin gridDisplay($columns) {
+  display: grid;
+  grid-template-columns: $columns;
+}
+:root {
+  --main: #d0baa7;
+  --secondary: #286c8b;
+  --alternative: #31363241;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  color: var(--black);
+  overflow: auto;
+  max-width: 100%;
+  overflow-x: hidden;
+  ul {
+    list-style-type: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    overflow-x: auto;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    box-shadow: 0px 2px 4px grey;
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 7px;
+      background-color: var(--lightGrey);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: #bbbaba;
+    }
+    tr {
+      background-color: var(--alternative);
+      border-bottom: 2px dashed var(--secondary);
+      height: 3.8rem;
+    }
+    tr:nth-child(odd) {
+      background-color: #f0f4fa9f;
+    }
+  }
+}

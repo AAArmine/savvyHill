@@ -1,37 +1,67 @@
+import React from "react";
 import styles from "./Heading.module.scss";
-import { useState } from "react";
-import { useDispatch} from "react-redux";
+import { connect } from "react-redux";
+import { RootState } from "../../redux/store";
 import { changeLang } from "../../redux/slices/langSlice";
 import Clock from "../clock";
 
-const Heading = () => {
-  const [lang, setLang] = useState<number>(1);
+interface HeadingProps {
+  lang: number;
+  changeLang: (lang: number) => void;
+}
 
-  const dispatch = useDispatch();
-  const handleLangChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+interface HeadingState {
+  lang: number;
+}
+
+class Heading extends React.Component<HeadingProps, HeadingState> {
+  constructor(props: HeadingProps) {
+    super(props);
+    this.state = {
+      lang: props.lang,
+    };
+  }
+
+  handleLangChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedLang = Number(event.target.value);
-    setLang(selectedLang);
-    dispatch(changeLang(selectedLang));
+    this.setState({ lang: selectedLang });
+    this.props.changeLang(selectedLang);
   };
 
-  return (
-    <section className={styles.headingContainer}>
-      <div className={styles.contentContainer}>
-        <div className={styles.clock}>
-          <Clock />
+  render() {
+    const { lang } = this.state;
+
+    return (
+      <section className={styles.headingContainer}>
+        <div className={styles.contentContainer}>
+          <div className={styles.clock}>
+            <Clock />
+          </div>
+          <select
+            name="languages"
+            id="lang"
+            onChange={this.handleLangChange}
+            value={lang}
+          >
+            <option value={1}>EN</option>
+            <option value={2}>RU</option>
+          </select>
         </div>
-        <select
-          name="languages"
-          id="lang"
-          onChange={handleLangChange}
-          value={lang}
-        >
-          <option value={1}>EN</option>
-          <option value={2}>RU</option>
-        </select>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  }
+}
+
+const mapStateToProps = (state: RootState) => {
+  return {
+    lang: state.lang.lang, 
+  };
 };
 
-export default Heading;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    changeLang: (lang: number) => dispatch(changeLang(lang)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Heading);
